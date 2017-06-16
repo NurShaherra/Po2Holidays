@@ -14,18 +14,18 @@ import java.util.ArrayList;
  * Created by 15031777 on 27/4/2017.
  */
 
-public class HolidayAdapter extends ArrayAdapter<Holidays> {
+public class HolidayAdapter extends ArrayAdapter<Holiday> {
 
-    private ArrayList<Holidays> holidays;
+    private ArrayList<Holiday> holiday;
     private Context context;
     private TextView tvTitle;
     private TextView tvDate;
-    private ImageView image;
+    private ImageView ivHoliday;
 
-    public HolidayAdapter(Context context, int resource, ArrayList<Holidays> objects){
+    public HolidayAdapter(Context context, int resource, ArrayList<Holiday> objects){
         super(context, resource, objects);
         // Store the food that is passed to this adapter
-        holidays = objects;
+        holiday = objects;
         // Store Context object as we would need to use it later
         this.context = context;
     }
@@ -44,29 +44,25 @@ public class HolidayAdapter extends ArrayAdapter<Holidays> {
         // Get the TextView object
         tvTitle = (TextView) rowView.findViewById(R.id.tvTitle);
         tvDate = (TextView) rowView.findViewById(R.id.tvDate);
+
         // Get the ImageView object
-        image = (ImageView) rowView.findViewById(R.id.image);
+        ivHoliday = (ImageView) rowView.findViewById(R.id.ivHoliday);
 
 
         // The parameter "position" is the index of the
         //  row ListView is requesting.
         //  We get back the food at the same index.
-        Holidays currentHol = holidays.get(position);
+        Holiday currentHol = holiday.get(position);
         // Set the TextView to show the food
 
-        tvTitle.setText(currentHol.getHols());
-        // Set the image to star or nostar accordingly
-        if(currentHol.getHols()) {
-            image.setImageResource(R.drawable.newyear);
-            tvDate.setText("1 Jan 2017");
-        }
-        else {
-            image.setImageResource(R.drawable.labour);
-            tvDate.setText("1 May 2017");
-        }
+        tvTitle.setText(currentHol.getTitle());
+        tvDate.setText(currentHol.getDate());
+        String image = currentHol.getImage();
+        int holiday = this.context.getResources().getIdentifier(image, "drawable", context.getPackageName());
+        ivHoliday.setImageResource(holiday);
         // Return the nicely done up View to the ListView
         return rowView;
     }
 }
 
-}
+

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/ivHoliday"
         android:layout_width="200dp"
         android:layout_height="wrap_content" />
 
